@@ -3,6 +3,11 @@ import static org.junit.Assert.*;
 
 public class CategoryTest {
 
+  @Before
+  public void tearDown() {
+    Category.clear();
+  }
+
   @Test
   public void category_instantiatesCorrectly_true() {
     Category testCategory = new Category("Home");
@@ -38,7 +43,6 @@ public class CategoryTest {
 
   @Test
   public void find_returnsCategoryWithSameId_secondCategory() {
-    Category.clear();
     Category firstCategory = new Category("Home");
     Category secondCategory = new Category("Work");
     assertEquals(Category.find(secondCategory.getId()), secondCategory);
@@ -46,7 +50,6 @@ public class CategoryTest {
 
   @Test
   public void getTasks_initiallyReturnsEmptyList_ArrayList() {
-    Category.clear();
     Category testCategory = new Category("Home");
     assertEquals(0, testCategory.getTasks().size());
   }
@@ -57,5 +60,10 @@ public class CategoryTest {
     Task testTask = new Task("Mow the lawn");
     testCategory.addTask(testTask);
     assertTrue(testCategory.getTasks().contains(testTask));
+  }
+
+  @Test
+  public void find_returnsNullWhenNoTaskFound_null() {
+    assertTrue(Category.find(999) == null);
   }
 }

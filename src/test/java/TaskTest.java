@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 public class TaskTest {
 
+  @Before
+  public void tearDown() {
+    Task.clear();
+  }
+
   @Test
   public void Task_instantiatesCorrectly_true() {
     Task myTask = new Task("Mow the lawn");
@@ -45,14 +50,12 @@ public class TaskTest {
 
   @Test
   public void getId_tasksInstantiateWithAnId_1() {
-    Task.clear(); // test will fail without this line!! We need to emptly leftover Task from previous tests.
     Task myTask = new Task("Mow the lawn");
     assertEquals(1, myTask.getId());
   }
 
   @Test
   public void find_returnsTaskWithSameId_secondTask() {
-    Task.clear();
     Task firstTask = new Task("Mow the lawn");
     Task secondTask = new Task("Buy the groceries");
     assertEquals(Task.find(secondTask.getId()), secondTask);
