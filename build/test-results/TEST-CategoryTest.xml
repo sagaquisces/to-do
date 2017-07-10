@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CategoryTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2017-07-05T15:33:37" hostname="epicodus-4.local" time="0.019">
+<testsuite name="CategoryTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-07-10T22:00:23" hostname="epicodus-4.local" time="0.275">
   <properties/>
-  <testcase name="category_instantiatesCorrectly_true" classname="CategoryTest" time="0.001"/>
-  <testcase name="find_returnsNullWhenNoTaskFound_null" classname="CategoryTest" time="0.0"/>
-  <testcase name="getTasks_initiallyReturnsEmptyList_ArrayList" classname="CategoryTest" time="0.0"/>
-  <testcase name="all_returnsAllInstancesOfCategory_true" classname="CategoryTest" time="0.0"/>
-  <testcase name="getName_categoryInstantiatesWithName_Home" classname="CategoryTest" time="0.0"/>
-  <testcase name="clear_emptiesAllCategoriesFromList_0" classname="CategoryTest" time="0.0"/>
-  <testcase name="getId_categoriesInstantiateWithAnId_1" classname="CategoryTest" time="0.0"/>
-  <testcase name="find_returnsCategoryWithSameId_secondCategory" classname="CategoryTest" time="0.0"/>
-  <testcase name="addTask_addsTaskToList_true" classname="CategoryTest" time="0.017"/>
+  <testcase name="category_instantiatesCorrectly_true" classname="CategoryTest" time="0.08"/>
+  <testcase name="getTasks_retrievesALlTasksFromDatabase_tasksList" classname="CategoryTest" time="0.063"/>
+  <testcase name="find_returnsNullWhenNoTaskFound_null" classname="CategoryTest" time="0.01"/>
+  <testcase name="equals_returnsTrueIfNamesAretheSame" classname="CategoryTest" time="0.005"/>
+  <testcase name="save_savesCategoryIdIntoDB_true" classname="CategoryTest" time="0.02"/>
+  <testcase name="getTasks_initiallyReturnsEmptyList_ArrayList" classname="CategoryTest" time="0.008"/>
+  <testcase name="all_returnsAllInstancesOfCategory_true" classname="CategoryTest" time="0.023"/>
+  <testcase name="getName_categoryInstantiatesWithName_Home" classname="CategoryTest" time="0.004"/>
+  <testcase name="save_savesIntoDatabase_true" classname="CategoryTest" time="0.014"/>
+  <testcase name="getId_categoriesInstantiateWithAnId_1" classname="CategoryTest" time="0.01"/>
+  <testcase name="save_assignsIdToObject" classname="CategoryTest" time="0.014"/>
+  <testcase name="find_returnsCategoryWithSameId_secondCategory" classname="CategoryTest" time="0.02"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
