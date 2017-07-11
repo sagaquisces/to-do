@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TaskTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-07-10T22:00:23" hostname="epicodus-4.local" time="0.099">
+<testsuite name="TaskTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-07-11T16:49:32" hostname="epicodus-7.local" time="0.134">
   <properties/>
-  <testcase name="equals_returnsTrueIfDescriptionsAretheSame" classname="TaskTest" time="0.004"/>
-  <testcase name="save_returnsTrueIfDescriptionsAretheSame" classname="TaskTest" time="0.013"/>
+  <testcase name="equals_returnsTrueIfDescriptionsAretheSame" classname="TaskTest" time="0.005"/>
+  <testcase name="save_returnsTrueIfDescriptionsAretheSame" classname="TaskTest" time="0.014"/>
+  <testcase name="delete_deletesTask_true" classname="TaskTest" time="0.015"/>
   <testcase name="getId_tasksInstantiateWithAnId_1" classname="TaskTest" time="0.009"/>
-  <testcase name="getCreatedAt_instantiatesWithCurrentTime_today" classname="TaskTest" time="0.005"/>
+  <testcase name="getCreatedAt_instantiatesWithCurrentTime_today" classname="TaskTest" time="0.003"/>
   <testcase name="isCompleted_isFalseAfterInstantiation_false" classname="TaskTest" time="0.004"/>
-  <testcase name="all_returnsAllInstancesOfTask_true" classname="TaskTest" time="0.022"/>
-  <testcase name="find_returnsTaskWithSameId_secondTask" classname="TaskTest" time="0.017"/>
-  <testcase name="save_assignsIdToObject" classname="TaskTest" time="0.013"/>
-  <testcase name="Task_instantiatesCorrectly_true" classname="TaskTest" time="0.005"/>
-  <testcase name="Task_instantiatesWithDescription_String" classname="TaskTest" time="0.005"/>
+  <testcase name="all_returnsAllInstancesOfTask_true" classname="TaskTest" time="0.02"/>
+  <testcase name="find_returnsTaskWithSameId_secondTask" classname="TaskTest" time="0.019"/>
+  <testcase name="save_assignsIdToObject" classname="TaskTest" time="0.015"/>
+  <testcase name="Task_instantiatesCorrectly_true" classname="TaskTest" time="0.004"/>
+  <testcase name="Task_instantiatesWithDescription_String" classname="TaskTest" time="0.004"/>
+  <testcase name="update_updatesTaskDescription_true" classname="TaskTest" time="0.018"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

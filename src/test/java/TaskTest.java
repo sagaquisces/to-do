@@ -7,7 +7,7 @@ public class TaskTest {
 
   @Before
   public void setUp() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/my_to_do_test", null, null);
+    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/to_do_test", null, null);
   }
 
   @After
@@ -88,6 +88,23 @@ public class TaskTest {
     myTask.save();
     Task savedTask = Task.all().get(0);
     assertEquals(myTask.getId(), savedTask.getId());
+  }
+
+  @Test
+  public void update_updatesTaskDescription_true() {
+    Task myTask = new Task("Mow the lawn", 1);
+    myTask.save();
+    myTask.update("Take a nap");
+    assertEquals("Take a nap", Task.find(myTask.getId()).getDescription());
+  }
+
+  @Test
+  public void delete_deletesTask_true() {
+    Task myTask = new Task("Mow the lawn", 1);
+    myTask.save();
+    int myTaskId = myTask.getId();
+    myTask.delete();
+    assertEquals(null, Task.find(myTaskId));
   }
 
 }
