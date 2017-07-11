@@ -122,4 +122,13 @@ public class CategoryTest {
     myCategory.update("Asylum");
     assertEquals("Asylum", Category.find(myCategory.getId()).getName());
   }
+
+  @Test
+  public void delete_deletesCategory_true() {
+    Category myCategory = new Category("Sanitorium");
+    myCategory.save();
+    int myCategoryId = myCategory.getId();
+    myCategory.delete();
+    assertEquals(null, Category.find(myCategoryId));
+  }
 }

@@ -1,7 +1,11 @@
 <!--index.vtl-->
 <h1>Welcome to the To Do List Application</h1>
 
-<h2> All Lists: </h2>
+<h2> All Categories: </h2>
+
+#if($deletedCategoryName)
+  <p>Category $deletedCategoryName was last deleted category.</p>
+#end
 
 #if($categories)
   <p>Click on a category to see its tasks:</p>

@@ -12,6 +12,7 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("deletedCategoryName", request.session().attribute("deletedCategoryName"));
       model.put("categories", Category.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
@@ -29,26 +30,12 @@ public class App {
 
     post("/categories/:category_id/tasks/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Task task = Task.find(Integer.parseInt(request.params("id")));
+      Task task = Task.find(Integer.parseInt(request.params(":id")));
       String description = request.queryParams("description");
       Category category = Category.find(task.getCategoryId());
       task.update(description);
       String url = String.format("/categories/%d/tasks/%d", category.getId(), task.getId());
       response.redirect(url);
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/tasks/:id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Task task = Task.find(Integer.parseInt(request.params(":id")));
-      model.put("task", task);
-      model.put("template", "templates/task.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/categories/new", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/category-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -78,7 +65,7 @@ public class App {
 
     post("/categories/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.params("id")));
+      Category category = Category.find(Integer.parseInt(request.params(":id")));
       String name = request.queryParams("name");
       category.update(name);
       String url = String.format("/categories/%d", category.getId());
@@ -86,7 +73,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("categories/:id/tasks/new", (request, response) -> {
+    get("/categories/:id/new-task", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Category category = Category.find(Integer.parseInt(request.params(":id")));
       model.put("category", category);
@@ -111,13 +98,25 @@ public class App {
 
     post("/categories/:category_id/tasks/:id/delete", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Task task = Task.find(Integer.parseInt(request.params("id")));
+      Task task = Task.find(Integer.parseInt(request.params(":id")));
       Category category = Category.find(task.getCategoryId());
       task.delete();
       model.put("category", category);
       model.put("template", "templates/category.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/categories/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Category category = Category.find(Integer.parseInt(request.params(":id")));
+      String deletedCategoryName = category.getName();
+      request.session().attribute("deletedCategoryName", deletedCategoryName);
+      category.delete();
+      model.put("deletedCategoryName", deletedCategoryName);
+      response.redirect("/");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
   }
 }
