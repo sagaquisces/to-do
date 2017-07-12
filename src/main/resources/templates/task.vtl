@@ -1,6 +1,13 @@
 <!--task.vtl-->
 <h1>$task.getDescription()</h1>
-<h2>Completed?:  $task.isCompleted()</h2>
+#if($task.completed)
+  <h2>This task is completed.</h2>
+#else
+  <h2>Completed?: $task.isCompleted()</h2>
+  <form action="/categories/$task.getCategoryId()/tasks/$task.getId()/completed" method="post">
+    <button type="submit" class="btn btn-danger" id="complete-task">Done!</button>
+  </form>
+#end
 
 <h2>Edit task:</h2>
 

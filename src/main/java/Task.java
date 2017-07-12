@@ -49,7 +49,7 @@ public class Task {
   }
 
   public static List<Task> all() {
-    String sql = "SELECT id, description, categoryId FROM tasks";
+    String sql = "SELECT id, description, categoryId, completed FROM tasks";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Task.class);
     }
@@ -63,16 +63,18 @@ public class Task {
       Task newTask = (Task) otherTask;
       return this.getDescription().equals(newTask.getDescription()) &&
              this.getId() == newTask.getId() &&
-             this.getCategoryId() == newTask.getCategoryId();
+             this.getCategoryId() == newTask.getCategoryId() &&
+             this.isCompleted() == completed;
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "INSERT INTO tasks (description, categoryId) VALUES (:description, :categoryId)";
+    String sql = "INSERT INTO tasks (description, categoryId, completed) VALUES (:description, :categoryId, :completed)";
     this.id = (int) con.createQuery(sql, true)
       .addParameter("description", this.description)
       .addParameter("categoryId", this.categoryId)
+      .addParameter("completed", this.completed)
       .executeUpdate()
       .getKey();
     }
@@ -83,6 +85,15 @@ public class Task {
     String sql = "UPDATE tasks SET description = :description WHERE id = :id";
     con.createQuery(sql)
       .addParameter("description", description)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void update() {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE tasks SET completed = true WHERE id = :id";
+    con.createQuery(sql)
       .addParameter("id", id)
       .executeUpdate();
     }

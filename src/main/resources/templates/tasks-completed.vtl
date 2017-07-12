@@ -1,0 +1,23 @@
+<!--tasks-completed.vtl-->
+
+<h2>Completed tasks:</h2>
+
+#if($categories)
+  <p>Click on a category or task for more detail:</p>
+  <ul>
+    #foreach ($category in $categories)
+      <li><a href="/categories/$category.getId()">$category.getName()</a></li>
+      <ul>
+      #foreach ($task in $category.getTasks())
+        #if($task.isCompleted())
+        <li><a href="/categories/$category.getId()/tasks/$task.getId()">$task.getDescription()</a></li>
+        #end
+      #end
+      </ul>
+    #end
+  </ul>
+#else
+  <p>There are no categories yet!</p>
+#end
+
+<!--tasks-completed.vtl-->

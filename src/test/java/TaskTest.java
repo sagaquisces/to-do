@@ -99,6 +99,14 @@ public class TaskTest {
   }
 
   @Test
+  public void update_updatesCompleted_true() {
+    Task myTask = new Task("Mow the lawn", 1);
+    myTask.save();
+    myTask.update();
+    assertEquals(true, Task.find(myTask.getId()).isCompleted());
+  }
+
+  @Test
   public void delete_deletesTask_true() {
     Task myTask = new Task("Mow the lawn", 1);
     myTask.save();
